@@ -14,8 +14,11 @@ pkgs: with pkgs; [
     vscode
     jetbrains.pycharm-community
     zim
+    xournalpp
 # Gnome specific
     gnome.gnome-terminal
     gnomeExtensions.caffeine
+    gnomeExtensions.appindicator
     gnome.gedit
+    stretchly
 ]
