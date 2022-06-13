@@ -8,6 +8,8 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./components/locale.nix
+      ./components/nix-config.nix
     ];
 
   # Bootloader.
@@ -29,24 +31,6 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
-  # Set your time zone.
-  time.timeZone = "Europe/Amsterdam";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_GB.utf8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "nl_NL.utf8";
-    LC_IDENTIFICATION = "nl_NL.utf8";
-    LC_MEASUREMENT = "nl_NL.utf8";
-    LC_MONETARY = "nl_NL.utf8";
-    LC_NAME = "nl_NL.utf8";
-    LC_NUMERIC = "nl_NL.utf8";
-    LC_PAPER = "nl_NL.utf8";
-    LC_TELEPHONE = "nl_NL.utf8";
-    LC_TIME = "nl_NL.utf8";
-  };
-
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   services.xserver.videoDrivers = [ "nvidia" ];
@@ -67,15 +51,6 @@
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
-
-  # Configure keymap in X11
-  services.xserver = {
-    layout = "us";
-    xkbVariant = "intl";
-  };
-
-  # Configure console keymap
-  console.keyMap = "us-acentos";
   
   # Start ZRAM
   zramSwap.enable = true;
@@ -91,17 +66,6 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
-
-  # Nix options
-  nix.extraOptions = ''
-    experimental-features = nix-command flakes
-  '';
-
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 30d";
-  };
 
   # Enable sound with pipewire.
   sound.enable = true;
@@ -129,9 +93,6 @@
     description = "Lucas Crijns";
     extraGroups = [ "networkmanager" "wheel" ];
   };
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
