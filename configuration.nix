@@ -50,6 +50,19 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.nvidia.modesetting.enable = true;
+  # Enable launch on dedicated graphics card
+  services.switcherooControl.enable = true;
+
+  # Enable OpenGL and hardware acceleration
+  hardware.opengl = {
+    enable = true;
+    extraPackages = with pkgs; [
+      vaapiIntel
+      vaapiVdpau
+      libvdpau-va-gl
+    ];
+  };
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
@@ -83,6 +96,12 @@
   nix.extraOptions = ''
     experimental-features = nix-command flakes
   '';
+
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 30d";
+  };
 
   # Enable sound with pipewire.
   sound.enable = true;
