@@ -6,8 +6,6 @@
             vim
             wget
             fish
-            git
-            gcc
             # Graphical programs
             firefox-wayland
             vscode
