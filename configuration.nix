@@ -3,7 +3,9 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, ... }:
-
+let
+  hardwareSpecifics = ./hardware-specifics/zbook-g5.nix;
+in
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -13,6 +15,8 @@
       ./components/gnome.nix
       ./components/packages.nix
       ./components/system-dev-environment.nix
+      ./components/services.nix
+      hardwareSpecifics
     ];
 
   # Bootloader.
@@ -24,42 +28,15 @@
   # Enable Plymouth
   boot.plymouth.enable = true;
 
+  # Start ZRAM
+  zramSwap.enable = true;
+  zramSwap.memoryPercent = 150;
+
   # Hostname
   networking.hostName = "Horizon-Mobile"; # Define your hostname.
 
   # Enable networking
   networking.networkmanager.enable = true;
-
-  # Graphics card config
-  # TODO: move to hardware
-  services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.nvidia.modesetting.enable = true;
-  services.switcherooControl.enable = true;
-
-  # Enable OpenGL and hardware acceleration
-  hardware.opengl = {
-    enable = true;
-    extraPackages = with pkgs; [
-      vaapiIntel
-      vaapiVdpau
-      libvdpau-va-gl
-    ];
-  };
-  
-  # Start ZRAM
-  zramSwap.enable = true;
-  zramSwap.memoryPercent = 150;
-
-  # Syncthing
-  services.syncthing = {
-    enable = true;
-    user = "lucas";
-    dataDir = "/home/lucas";
-    configDir = "/home/lucas/.config/syncthing";
-  };
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
 
   # Enable sound with pipewire.
   sound.enable = true;
@@ -83,13 +60,6 @@
     isNormalUser = true;
     description = "Lucas Crijns";
     extraGroups = [ "networkmanager" "wheel" ];
-  };
-
-  virtualisation = {
-    podman = {
-      enable = true;
-      dockerCompat = true;
-    };
   };
 
   # Some programs need SUID wrappers, can be configured further or are

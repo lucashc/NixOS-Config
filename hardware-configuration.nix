@@ -35,14 +35,4 @@
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-
-  # Enable proper sound
-  hardware.firmware = [
-    (
-      pkgs.runCommandNoCC "hda-jack-retask" { } ''
-      mkdir -p $out/lib/firmware/
-      cp ${./hda-jack-retask.fw} $out/lib/firmware/hda-jack-retask.fw
-      ''
-    )
-  ];
 }
