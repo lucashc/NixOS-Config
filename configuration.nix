@@ -16,6 +16,7 @@ in
       ./components/packages.nix
       ./components/system-dev-environment.nix
       ./components/services.nix
+      ./components/backups.nix
       hardwareSpecifics
     ];
 
@@ -59,15 +60,7 @@ in
   users.users.lucas = {
     isNormalUser = true;
     description = "Lucas Crijns";
-    extraGroups = [ "networkmanager" "wheel" ];
-  };
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  programs.mtr.enable = true;
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
+    extraGroups = [ "networkmanager" "wheel" "wireshark" ];
   };
 
   # Open ports in the firewall.
