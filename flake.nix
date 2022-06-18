@@ -8,16 +8,25 @@
   outputs = { self, nixpkgs }:
   let
     system = "x86_64-linux";
-    pkgs = import nixpkgs {
-      inherit system;
-    };
   in
   {
     nixosConfigurations = {
-      HorizonMobile = pkgs.lib.nixosSystem {
+      Horizon-Mobile = nixpkgs.lib.nixosSystem {
         inherit system;
         modules = [
-          ./configuration.nix
+          {
+            # Main configuration file
+            imports = [ ./configuration.nix ];
+            nix = {
+              # Enable flakes and sandbox support
+              extraOptions = "experimental-features = nix-command flakes";
+              useSandbox = true;
+              
+              # Registry
+              registry."nixpkgs".flake = nixpkgs;
+              registry."p".flake = nixpkgs;
+            };
+          }
         ];
       };
     };
