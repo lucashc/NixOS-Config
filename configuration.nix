@@ -17,6 +17,7 @@ in
       ./components/system-dev-environment.nix
       ./components/services.nix
       ./components/backups.nix
+      ./components/shell-config.nix
       hardwareSpecifics
     ];
 

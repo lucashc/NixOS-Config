@@ -3,7 +3,6 @@
     config = {
         environment.systemPackages = with pkgs; [
             # General dev utils
-            git
             gcc
             # Python environment
             (pkgs.python39.withPackages (
