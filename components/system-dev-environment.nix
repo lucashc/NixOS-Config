@@ -2,7 +2,7 @@
 {
     config = {
         environment.systemPackages = with pkgs; [
-            # General dev utils
+            # C/C++
             gcc
             # Python environment
             (pkgs.python39.withPackages (
@@ -19,6 +19,9 @@
             go
             # Julia environment
             julia-bin
+            # Rust environment
+            cargo
+            rustc
         ];
     };
 }

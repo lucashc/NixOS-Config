@@ -10,7 +10,7 @@
             git
             tree
             nmap
-            htop
+            htop btop
             file
         ];
         programs.zsh = {
