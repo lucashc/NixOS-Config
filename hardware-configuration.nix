@@ -18,6 +18,13 @@
       fsType = "btrfs";
       options = [ "subvol=@" "compress=zstd" "noatime" ];
     };
+  
+  fileSystems."/home" =
+    { device = "/dev/disk/by-uuid/6e474099-5c88-4d93-b036-dee19d00297c";
+      fsType = "btrfs";
+      options = [ "subvol=@home" "compress=zstd" ];
+    };
+
 
   fileSystems."/boot/efi" =
     { device = "/dev/disk/by-uuid/BF01-69D2";
