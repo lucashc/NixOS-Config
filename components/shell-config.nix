@@ -12,6 +12,7 @@
             nmap
             htop btop
             file
+            neofetch
         ];
         programs.zsh = {
             enable = true;
