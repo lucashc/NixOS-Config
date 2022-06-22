@@ -18,5 +18,8 @@
             persistentTimer = true;
             startAt = "daily";
         };
+
+        # Make hourly snapshots
+        services.snapper.configs.home.subvolume = "/home";
     };
 }
