@@ -8,6 +8,10 @@
   outputs = { self, nixpkgs }:
   let
     system = "x86_64-linux";
+    pkgs = import nixpkgs {
+      inherit system;
+      config.allowUnfree = true;
+    };
   in
   {
     nixosConfigurations = {
@@ -26,9 +30,11 @@
               registry."nixpkgs".flake = nixpkgs;
               registry."p".flake = nixpkgs;
             };
+            nixpkgs.pkgs = pkgs;
           }
         ];
       };
     };
+    pkgs = pkgs;
   };
 }

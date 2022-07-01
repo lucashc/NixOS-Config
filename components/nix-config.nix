@@ -13,8 +13,5 @@
         options = "--delete-older-than 30d";
       };
     };
-
-    # Allow unfree packages
-    nixpkgs.config.allowUnfree = true;
   };
 }
