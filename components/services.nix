@@ -17,6 +17,11 @@
             };
         };
 
+        # Enable Virtualbox
+        virtualisation.virtualbox.host.enable = true;
+        users.extraGroups.vboxusers.members = [ "lucas" ];
+
+
         # Enable printing
         # Enable CUPS to print documents.
         services.printing.enable = true;

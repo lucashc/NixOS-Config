@@ -25,6 +25,7 @@
         gnomeExtensions.caffeine
         gnomeExtensions.appindicator
         gnome.gedit
+        gnome.gnome-boxes
         vlc
     ];
   };

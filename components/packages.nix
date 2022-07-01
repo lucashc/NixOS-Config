@@ -12,6 +12,8 @@
             libreoffice
             gimp inkscape
             zotero
+            signal-desktop
+            spotify
         ];
         # Steam
         programs.steam.enable = true;
