@@ -14,6 +14,8 @@
             zotero
             signal-desktop
             spotify
+            texstudio
+            texlive.combined.scheme-medium
         ];
         # Steam
         programs.steam.enable = true;
