@@ -11,6 +11,7 @@ in
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./components/locale.nix
+      ./components/hardening.nix
       ./components/nix-config.nix
       ./components/gnome.nix
       ./components/packages.nix
