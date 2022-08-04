@@ -33,5 +33,8 @@
     # Enable fstrim for NVMe driver
     # By default it does so weekly
     services.fstrim.enable = true;
+
+    # Enable Firmware updates
+    services.fwupd.enable = true;
   };
 }
