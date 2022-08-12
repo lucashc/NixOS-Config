@@ -25,6 +25,11 @@
     # Enable printing
     # Enable CUPS to print documents.
     services.printing.enable = true;
+    services.printing.drivers = [
+      pkgs.gutenprint 
+      pkgs.gutenprintBin
+      pkgs.epson-escpr
+    ];
 
     # Enable BTRFS monthly filesystem scrubbing
     # By default it does so monthly
