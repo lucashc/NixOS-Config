@@ -63,7 +63,18 @@ in
     isNormalUser = true;
     description = "Lucas Crijns";
     extraGroups = [ "networkmanager" "wheel" "wireshark" ];
+    # Set mode such that secrets user can access the files
   };
+
+  # Define a user that stores secrets
+  users.users.secrets = {
+    isSystemUser = true;
+    createHome = true;
+    home = "/home/secrets";
+    description = "Secret Storage";
+    group = "secrets";
+  };
+  users.groups.secrets = {};
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
