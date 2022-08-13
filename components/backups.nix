@@ -23,9 +23,14 @@
     };
 
     # Make hourly snapshots
-    services.snapper = {
-      configs.home.subvolume = "/home/lucas";
-      snapshotInterval = "hourly";
+    services.snapper.configs = {
+      home = {
+        subvolume = "/home";
+        extraConfig = ''
+          TIMELINE_CREATE=yes
+          TIMELINE_CLEANUP=yes
+        '';
+      };
     };
 
     # Make backups to Google Drive
