@@ -34,7 +34,8 @@
         value = {
           device = path; 
           fsType = "bind";
-          options = [ "bind" "nosuid" "noexec" "nodev" ];
+          # Omit noexec, as for /tmp and /dev/shm certain builds fail
+          options = [ "bind" "nosuid" "nodev" ];
         };
       };
       hardenedRemounts = map makeSingleHardenedRemount paths;
