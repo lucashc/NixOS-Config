@@ -6,7 +6,7 @@
 let
   hardwareSpecifics = ./hardware-specifics/zbook-g5.nix;
 in
-{
+rec {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
@@ -63,18 +63,20 @@ in
     isNormalUser = true;
     description = "Lucas Crijns";
     extraGroups = [ "networkmanager" "wheel" "wireshark" ];
-    # Set mode such that secrets user can access the files
   };
 
   # Define a user that stores secrets
-  users.users.secrets = {
+  users.groups.secrets = {
+    name = "secrets";
+  };
+
+  users.users.secrets = rec {
     isSystemUser = true;
     createHome = true;
     home = "/home/secrets";
     description = "Secret Storage";
-    group = "secrets";
+    group = users.groups.secrets.name;
   };
-  users.groups.secrets = {};
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
