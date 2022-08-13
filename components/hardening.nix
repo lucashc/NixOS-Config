@@ -19,6 +19,12 @@
     # Disable kexec, as it is not needed
     boot.kernel.sysctl."kernel.kexec_load_disabled" = 1;
 
+    # Open ports in the firewall.
+    # networking.firewall.allowedTCPPorts = [ ... ];
+    # networking.firewall.allowedUDPPorts = [ ... ];
+    # Or disable the firewall altogether.
+    networking.firewall.enable = true;
+
     # TODO: Remount certain locations with nodev, nosuid, noexec, etc.
   };
 }
