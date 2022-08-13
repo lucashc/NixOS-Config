@@ -16,6 +16,7 @@
       spotify
       texstudio
       texlive.combined.scheme-medium
+      rclone restic
     ];
     # Steam
     programs.steam.enable = true;
