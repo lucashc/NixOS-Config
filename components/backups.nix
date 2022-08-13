@@ -34,7 +34,7 @@
         repository = "rclone:gdrive:backups";
         passwordFile = "/home/secrets/password.txt";
         inherit paths;
-        rcloneConfigFile = /home/secrets/rclone.conf;
+        rcloneConfigFile = "/home/secrets/rclone.conf";
       };
     };
   };
