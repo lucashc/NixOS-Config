@@ -26,5 +26,20 @@
     networking.firewall.enable = true;
 
     # TODO: Remount certain locations with nodev, nosuid, noexec, etc.
+    
+    fileSystems = let 
+      makeSingleHardenedRemount = path:
+      {
+        name = path; 
+        value = {
+          device = path; 
+          fsType = "bind";
+          options = [ "bind" "nosuid" "noexec" "nodev" ];
+        };
+      };
+      hardenedRemounts = map makeSingleHardenedRemount paths;
+      paths = [ "/tmp" "/var/tmp" "/dev/shm" "/etc" "/mnt" "/srv" ];
+      in
+      builtins.listToAttrs hardenedRemounts;
   };
 }
