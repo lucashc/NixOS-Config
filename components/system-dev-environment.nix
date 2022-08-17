@@ -7,12 +7,10 @@
       # Python environment
       (pkgs.python39.withPackages (
         pythonpkgs: with pythonpkgs; [
+          pip
           matplotlib
-          pytorch
           numpy
           scipy
-          jupyter
-          ipython
         ]
       ))
       # Go environment

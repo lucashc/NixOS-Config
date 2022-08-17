@@ -2,21 +2,26 @@
 {
   config = {
     environment.systemPackages = with pkgs; [
-      firefox-wayland
-      vscode
-      jetbrains.pycharm-community
-      zim
-      xournalpp
-      zoom-us
-      stretchly
-      libreoffice
-      gimp inkscape
-      zotero
-      signal-desktop
-      spotify
-      texstudio
-      texlive.combined.scheme-medium
-      rclone restic
+      # Desktop applications
+      firefox-wayland                 # Webbrowser
+      vscode                          # IDE
+      jetbrains.pycharm-community     # IDE
+      zim                             # Personal Wiki
+      xournalpp                       # PDF draw
+      zoom-us                         # Conferencing
+      stretchly                       # Break timer
+      libreoffice                     # Office suite
+      gimp inkscape                   # Image/vector editing
+      zotero                          # Citation management
+      signal-desktop                  # Instant messaging
+      spotify                         # Music player
+      texstudio                       # Editing latex
+      texlive.combined.scheme-medium  # Latex suite
+
+      # CLI applications
+      rclone restic                   # Backup utils
+      usbutils pciutils               # Device utilities
+      psmisc                          # Miscellaneous system utilities
     ];
     # Steam
     programs.steam.enable = true;
