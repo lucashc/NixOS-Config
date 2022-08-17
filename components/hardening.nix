@@ -25,8 +25,7 @@
     # Or disable the firewall altogether.
     networking.firewall.enable = true;
 
-    # TODO: Remount certain locations with nodev, nosuid, noexec, etc.
-    
+    # Remount certain directories with restricted permissions
     fileSystems = let 
       makeSingleHardenedRemount = path:
       {
